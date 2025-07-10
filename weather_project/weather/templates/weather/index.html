@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: url("https://source.unsplash.com/1600x900/?{{ weather.city }}") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .content {
+            background-color: rgba(0, 0, 0, 0.6); /* dark overlay */
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        .form-control, .btn {
+            border-radius: 20px;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body style="background: url('{{ background }}') no-repeat center center fixed; background-size: cover; color: white;">
+
+    <div class="container">
+        <div class="content text-center">
+            <h2>🌤️ Weather Forecast</h2>
+
+            <form method="post" class="mb-4">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="city" class="form-control" placeholder="Enter city name" required>
+                    <button type="submit" class="btn btn-light">Get Weather</button>
+                </div>
+            </form>
+
+            {% if error %}
+                <div class="alert alert-danger mt-3">{{ error }}</div>
+            {% endif %}
+
+            {% if weather %}
+                <div class="card text-center mx-auto" style="max-width: 400px;">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ weather.city }}</h4>
+                        <h5 class="card-text">{{ weather.description }}</h5>
+                        <img src="https://openweathermap.org/img/w/{{ weather.icon }}.png" alt="icon">
+                        <p class="card-text display-6">{{ weather.temperature }}°C</p>
+                        <p class="card-text"><small>{{ weather.date }}</small></p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
