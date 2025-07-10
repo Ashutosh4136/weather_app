@@ -1,9 +1,15 @@
 import datetime
 import requests
 from django.shortcuts import render
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 
 def index(request):
+    api_key=os.getenv('API_KEY')
+    url=os.getenv('URL')
     city = 'Kharagpur'  # default city
     weather_data = {}
     error_message = None
@@ -11,8 +17,7 @@ def index(request):
     if request.method == 'POST':
         city = request.POST.get('city', 'Kharagpur')
 
-    api_key = '0b5796e5e4690515b7de8cd726c95e88'  # Replace with your valid API key
-    url = 'https://api.openweathermap.org/data/2.5/weather'
+      # Replace with your valid API key
     params = {
         'q': city,
         'appid': api_key,
