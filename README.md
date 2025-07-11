@@ -14,11 +14,6 @@ A simple and elegant weather web application built with *Django* and *Bootstrap*
 
 ---
 
-## 📸 Demo
-
-> (Optional: Add screenshot or GIF here)
-
----
 
 ## 🛠 How to Run the Project
 
