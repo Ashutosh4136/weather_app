@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-x+qjjui=jw3%tah_!petf22(5iu=9mcrny9i6su3zk1tu1r(ry
 DEBUG = True
 
 ALLOWED_HOSTS = ['weather-app-plct.onrender.com']
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://weather-app-plct.onrender.com",
+]
 
 # Application definition
 
